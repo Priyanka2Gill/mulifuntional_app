@@ -1,4 +1,4 @@
-package com.example.admim.bottomnavigation.Fragment;
+package com.example.admim.bottomnavigation.fragment;
 
 
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import com.example.admim.bottomnavigation.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BlankFragment extends Fragment {
+public class NotificationFragment extends Fragment {
 
 
-    public BlankFragment() {
+    public NotificationFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class BlankFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_blank, container, false);
+        return inflater.inflate(R.layout.fragment_, container, false);
     }
 
 }

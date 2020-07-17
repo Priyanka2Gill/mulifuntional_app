@@ -1,4 +1,4 @@
-package com.example.admim.bottomnavigation.Fragment;
+package com.example.admim.bottomnavigation.fragment;
 
 
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import com.example.admim.bottomnavigation.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentB extends Fragment {
+public class DashboardFragment extends Fragment {
 
 
-    public FragmentB() {
+    public DashboardFragment() {
         // Required empty public constructor
     }
 

@@ -16,9 +16,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.admim.bottomnavigation.Fragment.BlankFragment;
-import com.example.admim.bottomnavigation.Fragment.FragmentA;
-import com.example.admim.bottomnavigation.Fragment.FragmentB;
+import com.example.admim.bottomnavigation.fragment.DashboardFragment;
+import com.example.admim.bottomnavigation.fragment.HomeFragment;
+import com.example.admim.bottomnavigation.fragment.NotificationFragment;
 import com.example.admim.bottomnavigation.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView navigation_bottom;
     public ImageView back;
     Fragment fragment;
-    private static final String TAG_HOME = "about us";
-    String CURRENT_FAGMENT = TAG_HOME;
     TextView txt_title;
     AppBarLayout appBarLayout;
     private boolean doubleBackToExitPressedOnce = false;
@@ -45,30 +43,30 @@ public class MainActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
 
-            fragment = new FragmentA();
-            loadFragment(fragment, CURRENT_FAGMENT);
-            txt_title.setText("About Us");
+            fragment = new HomeFragment();
+            loadFragment(fragment);
+            txt_title.setText("Home");
         }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         appBarLayout = findViewById(R.id.appbarlayout);
 
         back = findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
+       /* back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int SelectedItem = navigation_bottom.getSelectedItemId();
                 if (R.id.navigation_notifications == SelectedItem) {
-                    fragment = new FragmentA();
-                    loadFragment(fragment, CURRENT_FAGMENT);
+                    fragment = new NotificationFragment();
+                    loadFragment(fragment);
                 } else if (R.id.navigation_home == SelectedItem) {
-                    fragment = new FragmentA();
-                    loadFragment(fragment, CURRENT_FAGMENT);
+                    fragment = new NotificationFragment();
+                    loadFragment(fragment);
 
                 }
                 //onBackPressed();
             }
-        });
+        });*/
         navigation_bottom = findViewById(R.id.navigation);
         navigation_bottom.setOnNavigationItemSelectedListener(itemSelectedListener);
 
@@ -82,30 +80,30 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    fragment = new FragmentA();
-//                    txt_title.setText("About ACC");
+                    fragment = new HomeFragment();
+                    txt_title.setText("Home");
                     break;
                 case R.id.navigation_dashboard:
-                    fragment = new FragmentA();
-//                    txt_title.setText("Latest News");
+                    fragment = new DashboardFragment();
+                    txt_title.setText("Dashboard");
                     break;
                 case R.id.navigation_notifications:
-                    fragment = new FragmentA();
-//                    txt_title.setText("Events");
+                    fragment = new NotificationFragment();
+                    txt_title.setText("Notications");
               /*      break;
                 case R.id.bottom_navigation_contact_us:
-                    fragment = new FragmentA();
+                    fragment = new NotificationFragment();
 //                    txt_title.setText("Contact Us");
                     break;
                 case R.id.bottom_navigation_more:
-                    fragment = new FragmentA();
+                    fragment = new NotificationFragment();
 //                    txt_title.setText("ACC");
                     break;*/
 
             }
 
 
-            return loadFragment(fragment, CURRENT_FAGMENT);
+            return loadFragment(fragment);
         }
     };
 
@@ -137,29 +135,29 @@ public class MainActivity extends AppCompatActivity {
 
         } else if (R.id.navigation_notifications == SelectedItem) {
             if (back.getVisibility() == View.VISIBLE) {
-                fragment = new FragmentA();
-                loadFragment(fragment, CURRENT_FAGMENT);
+                fragment = new NotificationFragment();
+                loadFragment(fragment);
             } else {
-                fragment = new FragmentA();
-                loadFragment(fragment, CURRENT_FAGMENT);
+                fragment = new NotificationFragment();
+                loadFragment(fragment);
                 navigation_bottom.getMenu().getItem(0).setChecked(true);
 
             }
-        } else if (R.id.navigation_home == SelectedItem) {
+        } /*else if (R.id.navigation_home == SelectedItem) {
             if (back.getVisibility() == View.VISIBLE) {
-                fragment = new FragmentA();
-                loadFragment(fragment, CURRENT_FAGMENT);
+                fragment = new NotificationFragment();
+                loadFragment(fragment);
             } else {
-                fragment = new FragmentA();
-                loadFragment(fragment, CURRENT_FAGMENT);
+                fragment = new NotificationFragment();
+                loadFragment(fragment);
                 navigation_bottom.getMenu().getItem(0).setChecked(true);
 
             }
 
-        } else {
+        }*/ else {
 
-            fragment = new FragmentA();
-            loadFragment(fragment, CURRENT_FAGMENT);
+            fragment = new HomeFragment();
+            loadFragment(fragment);
             navigation_bottom.getMenu().getItem(0).setChecked(true);
         }
 
@@ -167,11 +165,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private boolean loadFragment(Fragment fragment, String CURRENT_FAGMENT) {
+    private boolean loadFragment(Fragment fragment) {
         if (fragment != null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.main_container, fragment, CURRENT_FAGMENT)
+                    .replace(R.id.main_container, fragment)
                     .commit();
             return true;
         }
@@ -180,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean addFragment(Fragment fragment) {
-        fragment = new FragmentA();
+        fragment = new NotificationFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.main_container, fragment);
         fragmentTransaction.commitAllowingStateLoss();
